@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — KidZone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --yellow:  #FFD600;
+      --orange:  #FF6B35;
+      --pink:    #FF3D9A;
+      --purple:  #7B2FFF;
+      --blue:    #00AEEF;
+      --green:   #00C96A;
+      --ink:     #12003A;
+      --ink-2:   #2D1060;
+      --surface: #FFFFFF;
+      --muted:   #6B5C8A;
+      --border:  #EDE5FF;
+      --radius:  16px;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #F7F3FF;
+      color: var(--ink);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Decorative top stripe ── */
+    .rainbow-stripe {
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--yellow) 0%, var(--orange) 20%,
+        var(--pink) 40%, var(--purple) 60%,
+        var(--blue) 80%, var(--green) 100%);
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
+      color: #fff;
+      padding: 60px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(123,47,255,.35) 0%, transparent 55%),
+        radial-gradient(circle at 85% 30%, rgba(0,174,239,.25) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(255,61,154,.2) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      backdrop-filter: blur(6px);
+    }
+    header h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: .5px;
+      margin-bottom: 14px;
+    }
+    header h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--yellow), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p {
+      max-width: 540px;
+      margin: 0 auto;
+      opacity: .72;
+      font-size: 1rem;
+    }
+    .last-updated {
+      margin-top: 20px;
+      display: inline-block;
+      background: rgba(255,255,255,.1);
+      border-radius: 50px;
+      padding: 5px 16px;
+      font-size: .82rem;
+      opacity: .8;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      margin: 40px 0 36px;
+      box-shadow: 0 2px 20px rgba(123,47,255,.06);
+    }
+    .toc h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.15rem;
+      color: var(--purple);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc ol {
+      padding-left: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+    }
+    @media(max-width:520px){ .toc ol { grid-template-columns: 1fr; } }
+    .toc li { font-size: .92rem; }
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color .18s;
+    }
+    .toc a:hover { color: var(--purple); }
+
+    /* ── Sections ── */
+    .section {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 34px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 20px rgba(123,47,255,.05);
+      scroll-margin-top: 24px;
+      transition: box-shadow .2s;
+    }
+    .section:hover { box-shadow: 0 4px 32px rgba(123,47,255,.1); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .section-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .icon-blue   { background: #E6F7FF; }
+    .icon-purple { background: #F0EAFF; }
+    .icon-yellow { background: #FFFBE6; }
+    .icon-green  { background: #E6FFF3; }
+    .icon-pink   { background: #FFF0F8; }
+    .icon-orange { background: #FFF4EE; }
+
+    .section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.35rem;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .section-number {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    p { margin-bottom: 14px; color: #3D2970; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Highlight boxes ── */
+    .highlight {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: .93rem;
+      font-weight: 500;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .highlight-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .hl-blue   { background: #E6F7FF; border-left: 4px solid var(--blue); }
+    .hl-green  { background: #E6FFF3; border-left: 4px solid var(--green); }
+    .hl-yellow { background: #FFFBE6; border-left: 4px solid var(--yellow); }
+    .hl-pink   { background: #FFF0F8; border-left: 4px solid var(--pink); }
+    .hl-purple { background: #F0EAFF; border-left: 4px solid var(--purple); }
+
+    /* ── Lists ── */
+    ul.policy-list {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0;
+    }
+    ul.policy-list li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      color: #3D2970;
+      border-bottom: 1px solid var(--border);
+      font-size: .95rem;
+    }
+    ul.policy-list li:last-child { border-bottom: none; }
+    ul.policy-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+      font-size: .8rem;
+      top: 10px;
+    }
+
+    /* ── Children special section ── */
+    .children-section {
+      border-color: var(--pink);
+      background: linear-gradient(135deg, #FFF0F8 0%, #F7F3FF 100%);
+    }
+
+    /* ── Contact card ── */
+    .contact-section {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
+      border: none;
+      color: #fff;
+    }
+    .contact-section h2 { color: #fff; }
+    .contact-section p { color: rgba(255,255,255,.75); }
+    .contact-section .section-number { color: rgba(255,255,255,.4); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    @media(max-width:520px){ .contact-grid { grid-template-columns: 1fr; } }
+    .contact-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 12px;
+      padding: 18px 20px;
+      backdrop-filter: blur(6px);
+    }
+    .contact-card .label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 5px;
+    }
+    .contact-card .value {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--yellow);
+    }
+    .contact-card .value a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+    .contact-card .value a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: .82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer strong { color: var(--purple); }
+
+    /* ── Back to top ── */
+    .back-top {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 32px;
+    }
+    .back-top a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--purple);
+      font-weight: 700;
+      font-size: .88rem;
+      text-decoration: none;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      padding: 7px 18px;
+      transition: all .18s;
+      box-shadow: 0 2px 10px rgba(123,47,255,.07);
+    }
+    .back-top a:hover {
+      background: var(--purple);
+      color: #fff;
+      border-color: var(--purple);
+    }
+
+    @media(max-width:600px){
+      .section { padding: 24px 20px; }
+      .toc { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rainbow-stripe"></div>
+
+  <!-- ── Header ── -->
+  <header id="top">
+    <div class="header-badge">🔒 Privacy &amp; Safety First</div>
+    <h1>Privacy Policy for<br><em>KidZone</em></h1>
+    <p>We are committed to protecting the privacy and safety of every child and young person who visits our website.</p>
+    <div class="last-updated">📅 Last Updated: March 14, 2026</div>
+  </header>
+
+  <div class="wrapper">
+
+    <!-- ── TOC ── -->
+    <nav class="toc" aria-label="Table of contents">
+      <h2>📋 Table of Contents</h2>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#information">Information We Collect</a></li>
+        <li><a href="#cookies">Cookies</a></li>
+        <li><a href="#ads">Third-Party Advertising</a></li>
+        <li><a href="#children">Children's Privacy</a></li>
+        <li><a href="#data-use">How We Use Information</a></li>
+        <li><a href="#third-parties">Third-Party Links</a></li>
+        <li><a href="#rights">Your Rights</a></li>
+        <li><a href="#changes">Policy Changes</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ol>
+    </nav>
+
+    <!-- ── 1. Overview ── -->
+    <section class="section" id="overview">
+      <div class="section-header">
+        <div class="section-icon icon-blue">🏠</div>
+        <div>
+          <div class="section-number">Section 01</div>
+          <h2>Overview</h2>
+        </div>
+      </div>
+      <p>Welcome to <strong>KidZone</strong> — a fun and educational website featuring quiz games, memory games, number guessing games, and a leaderboard for kids and young people.</p>
+      <p>This Privacy Policy explains what information we collect when you visit our website, how we use it, and how we keep it safe. We take your privacy very seriously, especially because our website is designed for children and youth.</p>
+      <div class="highlight hl-blue">
+        <span class="highlight-icon">ℹ️</span>
+        <span>By using KidZone, you and your parent or guardian agree to the practices described in this Privacy Policy. If you do not agree, please stop using the website.</span>
+      </div>
+      <p>This policy applies to all visitors of our website and is designed to comply with applicable privacy laws, including the <strong>Children's Online Privacy Protection Act (COPPA)</strong> and the <strong>General Data Protection Regulation (GDPR)</strong> where applicable.</p>
+    </section>
+
+    <!-- ── 2. Information We Collect ── -->
+    <section class="section" id="information">
+      <div class="section-header">
+        <div class="section-icon icon-purple">📦</div>
+        <div>
+          <div class="section-number">Section 02</div>
+          <h2>Information We Collect</h2>
+        </div>
+      </div>
+      <p>We aim to collect as little information as possible. Here is what may be collected when you use KidZone:</p>
+
+      <p><strong>Information you provide directly:</strong></p>
+      <ul class="policy-list">
+        <li><strong>Player Name / Nickname</strong> — When you enter a name or nickname to appear on the leaderboard, this is stored locally in your browser (not on our servers).</li>
+        <li><strong>Game Scores</strong> — Your scores from quizzes, memory games, and number guessing games are saved locally on your device using browser storage.</li>
+      </ul>
+
+      <p><strong>Information collected automatically:</strong></p>
+      <ul class="policy-list">
+        <li><strong>Device &amp; Browser Information</strong> — Basic technical data such as browser type, device type, and screen size may be collected to help the website display correctly.</li>
+        <li><strong>Usage Data</strong> — Pages visited, time spent on games, and general interaction data may be logged for website improvement purposes.</li>
+        <li><strong>IP Address</strong> — Your IP address may be collected automatically by our server or by third-party services such as advertising networks.</li>
+      </ul>
+
+      <div class="highlight hl-green">
+        <span class="highlight-icon">✅</span>
+        <span>We do <strong>not</strong> require you to create an account, provide an email address, or share any personally identifiable information to play our games.</span>
+      </div>
+    </section>
+
+    <!-- ── 3. Cookies ── -->
+    <section class="section" id="cookies">
+      <div class="section-header">
+        <div class="section-icon icon-yellow">🍪</div>
+        <div>
+          <div class="section-number">Section 03</div>
+          <h2>Cookies</h2>
+        </div>
+      </div>
+      <p>Cookies are small text files stored on your device when you visit a website. They help websites remember information about your visit.</p>
+
+      <p><strong>How we use cookies:</strong></p>
+      <ul class="policy-list">
+        <li><strong>Essential Cookies</strong> — Used to save your game progress, scores, and player nickname locally so you can continue where you left off.</li>
+        <li><strong>Analytics Cookies</strong> — We may use tools like Google Analytics to understand how visitors use our website. This helps us make the site better. These cookies do not identify you personally.</li>
+        <li><strong>Advertising Cookies</strong> — If Google AdSense ads are displayed on our website, Google may use cookies to show relevant ads. See Section 4 for more details.</li>
+      </ul>
+
+      <div class="highlight hl-yellow">
+        <span class="highlight-icon">💡</span>
+        <span>You can control or delete cookies through your browser settings at any time. However, disabling certain cookies may affect some features of the website, such as saving your scores.</span>
+      </div>
+
+      <p>Most browsers allow you to view, manage, and delete cookies. To learn more, visit your browser's help section or go to <strong>www.allaboutcookies.org</strong>.</p>
+    </section>
+
+    <!-- ── 4. Third-Party Ads ── -->
+    <section class="section" id="ads">
+      <div class="section-header">
+        <div class="section-icon icon-orange">📢</div>
+        <div>
+          <div class="section-number">Section 04</div>
+          <h2>Third-Party Advertising</h2>
+        </div>
+      </div>
+      <p>KidZone may display advertisements in the future using <strong>Google AdSense</strong> or similar advertising services. These ads help us keep the website free to use.</p>
+
+      <p><strong>How Google AdSense works:</strong></p>
+      <ul class="policy-list">
+        <li>Google uses cookies and similar technologies to serve ads based on your prior visits to our website and other websites on the internet.</li>
+        <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other websites on the internet.</li>
+        <li>We do <strong>not</strong> control the content of these ads or the data collected by Google for advertising purposes.</li>
+        <li>Third-party advertising partners may collect information such as IP address, device identifiers, and browsing behaviour to display relevant advertisements.</li>
+      </ul>
+
+      <div class="highlight hl-pink">
+        <span class="highlight-icon">⚠️</span>
+        <span><strong>Important for Parents:</strong> If our site is used by children under 13, we will ensure that Google AdSense is configured in <strong>non-personalized ad mode</strong> so that interest-based or behavioural advertising is not served to young children, in compliance with COPPA.</span>
+      </div>
+
+      <p>You may opt out of personalized advertising by visiting <strong>Google's Ads Settings</strong> at <strong>www.google.com/settings/ads</strong>, or by visiting <strong>www.aboutads.info</strong> to opt out of interest-based advertising by other participating companies.</p>
+    </section>
+
+    <!-- ── 5. Children's Privacy ── -->
+    <section class="section children-section" id="children">
+      <div class="section-header">
+        <div class="section-icon icon-pink">👧</div>
+        <div>
+          <div class="section-number">Section 05</div>
+          <h2>Children's Privacy</h2>
+        </div>
+      </div>
+      <p>Protecting the privacy of children is very important to us. KidZone is designed as a safe, educational, and entertaining environment for kids and youth.</p>
+
+      <div class="highlight hl-pink">
+        <span class="highlight-icon">🛡️</span>
+        <span>We do <strong>not</strong> knowingly collect personally identifiable information from children under the age of <strong>13</strong> without verifiable parental consent, in compliance with the <strong>Children's Online Privacy Protection Act (COPPA)</strong>.</span>
+      </div>
+
+      <p><strong>Our commitments to children's safety:</strong></p>
+      <ul class="policy-list">
+        <li>We do not require children to register or create an account to use our website.</li>
+        <li>We do not ask children for their real name, email address, phone number, home address, or any other personal details.</li>
+        <li>Player nicknames entered for the leaderboard are stored only locally on the user's own device and are not sent to our servers.</li>
+        <li>We do not allow children to post publicly visible content or communicate with other users.</li>
+        <li>When running ads, we configure them to show non-personalised advertisements to children.</li>
+        <li>If we discover that we have inadvertently collected personal information from a child under 13, we will delete it promptly.</li>
+      </ul>
+
+      <p><strong>For Parents and Guardians:</strong></p>
+      <p>We encourage parents and guardians to supervise their children's online activity. If you believe your child has provided us with personal information without your consent, please contact us immediately at the details in Section 10 and we will take steps to remove that information.</p>
+    </section>
+
+    <!-- ── 6. How We Use Information ── -->
+    <section class="section" id="data-use">
+      <div class="section-header">
+        <div class="section-icon icon-blue">⚙️</div>
+        <div>
+          <div class="section-number">Section 06</div>
+          <h2>How We Use Information</h2>
+        </div>
+      </div>
+      <p>Any information collected is used only to provide and improve the KidZone experience. Specifically, we may use it to:</p>
+      <ul class="policy-list">
+        <li>Display your score and nickname on the local leaderboard during gameplay.</li>
+        <li>Understand how our games and features are being used so we can improve them.</li>
+        <li>Ensure the website works correctly across different devices and browsers.</li>
+        <li>Serve advertisements to keep the website free for all users (when ads are enabled).</li>
+        <li>Detect and prevent technical issues, bugs, or abusive activity.</li>
+        <li>Comply with legal obligations if required by law.</li>
+      </ul>
+      <div class="highlight hl-green">
+        <span class="highlight-icon">✅</span>
+        <span>We do <strong>not</strong> sell, rent, or trade any user information to third parties for marketing purposes.</span>
+      </div>
+    </section>
+
+    <!-- ── 7. Third-Party Links ── -->
+    <section class="section" id="third-parties">
+      <div class="section-header">
+        <div class="section-icon icon-purple">🔗</div>
+        <div>
+          <div class="section-number">Section 07</div>
+          <h2>Third-Party Links</h2>
+        </div>
+      </div>
+      <p>Our website may contain links to third-party websites (for example, links within advertisements). These external websites have their own privacy policies, which we do not control.</p>
+      <p>We are not responsible for the privacy practices or content of any third-party websites. We strongly encourage parents and guardians to review the privacy policies of any external sites their children visit.</p>
+      <div class="highlight hl-purple">
+        <span class="highlight-icon">👁️</span>
+        <span>Clicking a third-party link will take you away from KidZone. We recommend parents supervise when children follow any external links.</span>
+      </div>
+    </section>
+
+    <!-- ── 8. Your Rights ── -->
+    <section class="section" id="rights">
+      <div class="section-header">
+        <div class="section-icon icon-green">⚖️</div>
+        <div>
+          <div class="section-number">Section 08</div>
+          <h2>Your Rights</h2>
+        </div>
+      </div>
+      <p>Depending on where you live, you (or your parent/guardian on your behalf) may have rights regarding your personal information, including:</p>
+      <ul class="policy-list">
+        <li><strong>Right to Access</strong> — You may request a copy of any personal information we hold about you.</li>
+        <li><strong>Right to Delete</strong> — You may request that we delete any personal data we have collected.</li>
+        <li><strong>Right to Correct</strong> — You may ask us to correct any inaccurate information.</li>
+        <li><strong>Right to Object</strong> — You may object to certain types of data processing, such as advertising.</li>
+        <li><strong>Right to Opt-Out</strong> — You can opt out of personalised advertising through Google's ad settings.</li>
+      </ul>
+      <p>Since KidZone stores game data (scores and nicknames) locally in your browser, you can clear this data at any time by clearing your browser's local storage or cookies. To exercise any other rights, please contact us using the details in Section 10.</p>
+    </section>
+
+    <!-- ── 9. Policy Changes ── -->
+    <section class="section" id="changes">
+      <div class="section-header">
+        <div class="section-icon icon-yellow">🔄</div>
+        <div>
+          <div class="section-number">Section 09</div>
+          <h2>Changes to This Policy</h2>
+        </div>
+      </div>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. When we make significant changes, we will update the <strong>"Last Updated"</strong> date shown at the top of this page.</p>
+      <p>We encourage you to review this Privacy Policy periodically. Continued use of the website after changes are posted means you accept the updated policy.</p>
+      <div class="highlight hl-yellow">
+        <span class="highlight-icon">📅</span>
+        <span>The current version of this Privacy Policy was last updated on <strong>March 14, 2026</strong>.</span>
+      </div>
+    </section>
+
+    <!-- ── 10. Contact ── -->
+    <section class="section contact-section" id="contact">
+      <div class="section-header">
+        <div class="section-icon" style="background:rgba(255,255,255,.12);font-size:1.4rem;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;">✉️</div>
+        <div>
+          <div class="section-number">Section 10</div>
+          <h2>Contact Us</h2>
+        </div>
+      </div>
+      <p>If you have any questions, concerns, or requests about this Privacy Policy or how we handle your information, please don't hesitate to reach out. We are happy to help!</p>
+      <p>Parents and guardians can also contact us if they believe their child has shared personal information on our website without consent.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="label">📧 Email</div>
+          <div class="value"><a href="mailto:quizverseworld@gmail.com">quizverseworld@gmail.com</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="label">🌐 Website</div>
+          <div class="value"><a href="#">www.quizverseworld.vercel.app/</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="label">⏱ Response Time</div>
+          <div class="value" style="color:rgba(255,255,255,.8);">Within 7 business days</div>
+        </div>
+        <div class="contact-card">
+          <div class="label">📍 Jurisdiction</div>
+          <div class="value" style="color:rgba(255,255,255,.8);">India</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to top -->
+    <div class="back-top">
+      <a href="#top">↑ Back to Top</a>
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <footer>
+    <p>© 2026 <strong>KidZone</strong>. All rights reserved. &nbsp;·&nbsp; This Privacy Policy was last updated on March 14, 2026.</p>
+    <p style="margin-top:6px">This website is designed for kids and youth. We are committed to a safe and fun online experience. 🎮</p>
+  </footer>
+
+</body>
+</html>

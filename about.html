@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — KidZone 🎮</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --yellow:   #FFD600;
+      --orange:   #FF6B35;
+      --pink:     #FF3D9A;
+      --purple:   #7B2FFF;
+      --blue:     #00AEEF;
+      --teal:     #00C9B1;
+      --green:    #00D26A;
+      --ink:      #0F002E;
+      --ink-soft: #2A0A5E;
+      --white:    #FFFFFF;
+      --off-white:#F6F2FF;
+      --muted:    #7A6899;
+      --border:   #EBE3FF;
+      --r-lg:     22px;
+      --r-md:     14px;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--off-white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── Rainbow top bar ── */
+    .top-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--yellow) 0%, var(--orange) 18%,
+        var(--pink) 36%, var(--purple) 54%,
+        var(--blue) 72%, var(--green) 90%);
+    }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      background: linear-gradient(145deg, var(--ink) 0%, #200060 55%, #001840 100%);
+      color: var(--white);
+      padding: 80px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Soft glow blobs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 60%, rgba(123,47,255,.4) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 30%, rgba(0,174,239,.3) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 55% 90%, rgba(255,61,154,.25) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Floating dots pattern */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px;
+      padding: 7px 20px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fadeDown .6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: .5px;
+      margin-bottom: 10px;
+      animation: fadeDown .6s .1s ease both;
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(90deg, var(--yellow), var(--orange) 50%, var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      line-height: 1.7;
+      opacity: .78;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      animation: fadeDown .6s .2s ease both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: var(--ink);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(255,107,53,.4);
+      transition: transform .2s, box-shadow .2s;
+      animation: fadeDown .6s .3s ease both;
+    }
+    .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,107,53,.5); }
+
+    /* Floating emoji row */
+    .hero-emojis {
+      display: flex;
+      justify-content: center;
+      gap: clamp(16px, 4vw, 36px);
+      margin-top: 48px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      animation: fadeDown .6s .4s ease both;
+    }
+    .hero-emojis span {
+      display: inline-block;
+      animation: bobble 3s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.3));
+    }
+    .hero-emojis span:nth-child(2) { animation-delay: .3s; }
+    .hero-emojis span:nth-child(3) { animation-delay: .6s; }
+    .hero-emojis span:nth-child(4) { animation-delay: .9s; }
+    .hero-emojis span:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes bobble {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Wave divider */
+    .wave {
+      display: block;
+      width: 100%;
+      height: 60px;
+      background: var(--off-white);
+      clip-path: ellipse(56% 100% at 50% 100%);
+      margin-top: -2px;
+    }
+
+    /* ══════════════════════════════
+       SECTIONS WRAPPER
+    ══════════════════════════════ */
+    .page { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* ── Section Label ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      background: rgba(123,47,255,.09);
+      border-radius: 50px;
+      padding: 5px 14px;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .section-heading em {
+      font-style: normal;
+      color: var(--purple);
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #3D2970;
+      max-width: 640px;
+    }
+
+    /* ══════════════════════════════
+       INTRO / MISSION
+    ══════════════════════════════ */
+    .intro {
+      padding: 72px 0 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media(max-width:680px){ .intro { grid-template-columns: 1fr; gap: 32px; } }
+
+    .intro-visual {
+      background: linear-gradient(145deg, #200060, #001840);
+      border-radius: var(--r-lg);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(123,47,255,.25);
+    }
+    .intro-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(0,174,239,.25), transparent 60%),
+                  radial-gradient(ellipse at 75% 70%, rgba(255,61,154,.2), transparent 55%);
+    }
+    .intro-visual .big-emoji {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 16px;
+      position: relative;
+      filter: drop-shadow(0 6px 16px rgba(255,214,0,.3));
+      animation: bobble 4s ease-in-out infinite;
+    }
+    .intro-visual .stat-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      position: relative;
+    }
+    .intro-visual .stat {
+      text-align: center;
+      color: var(--white);
+    }
+    .intro-visual .stat-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .intro-visual .stat-lbl {
+      font-size: .75rem;
+      font-weight: 700;
+      opacity: .6;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    /* ══════════════════════════════
+       WHAT WE OFFER (Game Cards)
+    ══════════════════════════════ */
+    .offers { padding: 16px 0 72px; }
+    .offers-header { text-align: center; margin-bottom: 40px; }
+    .offers-header .section-body { margin: 0 auto; }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 28px 22px 24px;
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: 4px 4px 0 0;
+    }
+    .game-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.1);
+    }
+
+    .game-card.c1::before { background: linear-gradient(90deg, var(--blue), var(--purple)); }
+    .game-card.c2::before { background: linear-gradient(90deg, var(--orange), var(--pink)); }
+    .game-card.c3::before { background: linear-gradient(90deg, var(--green), var(--teal)); }
+    .game-card.c4::before { background: linear-gradient(90deg, var(--yellow), var(--orange)); }
+    .game-card.c1:hover { border-color: var(--blue); }
+    .game-card.c2:hover { border-color: var(--pink); }
+    .game-card.c3:hover { border-color: var(--green); }
+    .game-card.c4:hover { border-color: var(--yellow); }
+
+    .game-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      margin-bottom: 16px;
+    }
+    .c1 .game-icon-wrap { background: #E6F7FF; }
+    .c2 .game-icon-wrap { background: #FFF0F8; }
+    .c3 .game-icon-wrap { background: #E6FFF3; }
+    .c4 .game-icon-wrap { background: #FFFBE6; }
+
+    .game-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .game-card p {
+      font-size: .9rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════
+       WHY KIDZONE (Values)
+    ══════════════════════════════ */
+    .values { padding: 0 0 72px; }
+    .values-inner {
+      background: linear-gradient(135deg, var(--ink) 0%, #1a0050 50%, #001840 100%);
+      border-radius: var(--r-lg);
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+    }
+    @media(max-width:600px){ .values-inner { padding: 40px 24px; } }
+    .values-inner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 10% 40%, rgba(123,47,255,.35), transparent 65%),
+        radial-gradient(ellipse 40% 50% at 90% 60%, rgba(0,174,239,.25), transparent 65%);
+      pointer-events: none;
+    }
+    .values-inner .section-label { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+    .values-inner .section-heading { color: var(--white); }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+      position: relative;
+    }
+    .value-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r-md);
+      padding: 22px 20px;
+      transition: background .2s;
+    }
+    .value-card:hover { background: rgba(255,255,255,.12); }
+    .value-card .vi { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .value-card h4 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: var(--white);
+    }
+    .value-card p { font-size: .87rem; opacity: .7; line-height: 1.6; }
+
+    /* ══════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════ */
+    .how { padding: 72px 0; }
+    .how-header { text-align: center; margin-bottom: 48px; }
+    .how-header .section-body { margin: 0 auto; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+    /* Connector line */
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px; left: 10%; right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
+      border-radius: 2px;
+      z-index: 0;
+    }
+    @media(max-width:600px){ .steps::before { display: none; } .steps { gap: 20px; } }
+
+    .step {
+      text-align: center;
+      padding: 0 16px 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.6rem;
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(0,0,0,.15);
+      position: relative;
+    }
+    .step:nth-child(1) .step-num { background: linear-gradient(135deg, var(--blue), var(--purple)); }
+    .step:nth-child(2) .step-num { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+    .step:nth-child(3) .step-num { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+    .step:nth-child(4) .step-num { background: linear-gradient(135deg, var(--orange), var(--yellow)); color: var(--ink); }
+
+    .step h4 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .step p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ══════════════════════════════
+       AUDIENCE
+    ══════════════════════════════ */
+    .audience { padding: 0 0 72px; }
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media(max-width:540px){ .audience-grid { grid-template-columns: 1fr; } }
+
+    .audience-card {
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .audience-card.kids {
+      background: linear-gradient(135deg, #FFF0F8, #F0EAFF);
+      border: 2px solid #F0C8E4;
+    }
+    .audience-card.parents {
+      background: linear-gradient(135deg, #E6F7FF, #E6FFF3);
+      border: 2px solid #C0E8FF;
+    }
+    .audience-card .big { font-size: 3rem; margin-bottom: 14px; display: block; }
+    .audience-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+    .kids h3 { color: var(--pink); }
+    .parents h3 { color: var(--blue); }
+    .audience-card ul { list-style: none; padding: 0; }
+    .audience-card ul li {
+      font-size: .92rem;
+      color: #3D2970;
+      padding: 6px 0 6px 24px;
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      line-height: 1.5;
+    }
+    .audience-card ul li:last-child { border-bottom: none; }
+    .audience-card ul li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      font-weight: 800;
+    }
+    .kids ul li::before { color: var(--pink); }
+    .parents ul li::before { color: var(--blue); }
+
+    /* ══════════════════════════════
+       PROMISE BANNER
+    ══════════════════════════════ */
+    .promise {
+      background: linear-gradient(135deg, var(--yellow) 0%, var(--orange) 100%);
+      border-radius: var(--r-lg);
+      padding: 50px 48px;
+      text-align: center;
+      margin-bottom: 72px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(255,107,53,.3);
+    }
+    @media(max-width:600px){ .promise { padding: 36px 24px; } }
+    .promise::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .promise h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--ink);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .promise p {
+      font-size: 1.05rem;
+      color: rgba(15,0,46,.75);
+      max-width: 520px;
+      margin: 0 auto 28px;
+      font-weight: 600;
+      position: relative;
+    }
+    .promise-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(15,0,46,.25);
+    }
+    .promise-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(15,0,46,.35); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--yellow); }
+    footer .foot-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    footer .foot-links a {
+      color: rgba(255,255,255,.5);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    footer .foot-links a:hover { color: var(--yellow); }
+
+    /* Utility */
+    .text-center { text-align: center; }
+    @media(max-width:680px){ .intro-visual { order: -1; } }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"></div>
+
+  <!-- ══════════ HERO ══════════ -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-pill">🎮 About KidZone</div>
+      <h1>Where <span class="accent">Learning</span><br>Feels Like Play!</h1>
+      <p class="hero-sub">
+        KidZone is a free, fun-filled games and quiz website built especially for kids and young people who love to challenge their brains, have a laugh, and climb the leaderboard!
+      </p>
+      <a href="#intro" class="hero-cta">Discover Our Story 👇</a>
+      <div class="hero-emojis">
+        <span>🧠</span><span>🎯</span><span>🃏</span><span>🔢</span><span>🏆</span>
+      </div>
+    </div>
+  </header>
+  <div class="wave"></div>
+
+  <main class="page">
+
+    <!-- ══════════ INTRO / MISSION ══════════ -->
+    <section class="intro" id="intro">
+      <div class="intro-text">
+        <div class="section-label">✨ Our Story</div>
+        <h2 class="section-heading">Hello from<br><em>KidZone!</em></h2>
+        <p class="section-body">
+          We started KidZone with one simple idea — <strong>kids deserve a place on the internet that is fun, safe, and actually makes them smarter.</strong>
+        </p>
+        <br>
+        <p class="section-body">
+          Every quiz, every memory challenge, and every brain game on our site is handpicked to be entertaining <em>and</em> educational at the same time. Whether you're 6 or 16, there's always a new challenge waiting for you here!
+        </p>
+        <br>
+        <p class="section-body">
+          Best of all? You don't need to sign up or download anything. Just open the website and start playing. It's completely <strong>free</strong> for everyone. 🎉
+        </p>
+      </div>
+
+      <div class="intro-visual">
+        <span class="big-emoji">🎮</span>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">4+</div>
+            <div class="stat-lbl">Game Types</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-lbl">Free to Play</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">∞</div>
+            <div class="stat-lbl">Fun!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ WHAT WE OFFER ══════════ -->
+    <section class="offers" id="games">
+      <div class="offers-header">
+        <div class="section-label">🕹️ What We Offer</div>
+        <h2 class="section-heading">Games for Every Kind<br>of <em>Brain</em></h2>
+        <p class="section-body">From tricky trivia to lightning-fast memory challenges — we've got something for everyone. Here's what you can play on KidZone right now!</p>
+      </div>
+
+      <div class="games-grid">
+        <div class="game-card c1">
+          <div class="game-icon-wrap">🧠</div>
+          <h3>Brain Quiz</h3>
+          <p>Test your knowledge across Science, Maths, Geography, Animals, and Art! 10 questions, a countdown timer, and bonus points for speedy answers.</p>
+        </div>
+
+        <div class="game-card c2">
+          <div class="game-icon-wrap">🃏</div>
+          <h3>Memory Match</h3>
+          <p>Flip cards and find matching emoji pairs before the clock runs out. A classic memory challenge that gets trickier every round!</p>
+        </div>
+
+        <div class="game-card c3">
+          <div class="game-icon-wrap">🔢</div>
+          <h3>Number Guesser</h3>
+          <p>Can you guess the secret number between 1 and 100? Use hot-and-cold clues and try to crack the code in as few attempts as possible!</p>
+        </div>
+
+        <div class="game-card c4">
+          <div class="game-icon-wrap">⚡</div>
+          <h3>Reaction Speed</h3>
+          <p>How fast are your reflexes? Wait for the green light and tap as quickly as you can. Compete with yourself to set a new personal best!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ VALUES ══════════ -->
+    <section class="values" id="values">
+      <div class="values-inner">
+        <div class="section-label">💜 What We Believe In</div>
+        <h2 class="section-heading">Why We Built KidZone</h2>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <span class="vi">📚</span>
+            <h4>Learning First</h4>
+            <p>Every game is designed to sharpen thinking skills, memory, and general knowledge — without feeling like homework!</p>
+          </div>
+          <div class="value-card">
+            <span class="vi">🛡️</span>
+            <h4>Safe for Kids</h4>
+            <p>No accounts, no personal data collection, no harmful content. KidZone is a safe space for young players of all ages.</p>
+          </div>
+          <div class="value-card">
+            <span class="vi">🆓</span>
+            <h4>Always Free</h4>
+            <p>We believe great educational fun should be accessible to every child, everywhere — so KidZone will always be free to play.</p>
+          </div>
+          <div class="value-card">
+            <span class="vi">📱</span>
+            <h4>Play Anywhere</h4>
+            <p>KidZone works perfectly on phones, tablets, and computers. Play at home, at school, or on the go!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ HOW IT WORKS ══════════ -->
+    <section class="how" id="how">
+      <div class="how-header">
+        <div class="section-label">🚀 How It Works</div>
+        <h2 class="section-heading">Start Playing in<br><em>Seconds!</em></h2>
+        <p class="section-body">No sign-ups. No downloads. No fuss. Just fun! Here's how easy it is to get started on KidZone.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Open the Website</h4>
+          <p>Just go to KidZone on any device — mobile, tablet, or computer. No app needed!</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Pick a Game</h4>
+          <p>Choose from Quiz, Memory Match, Number Guesser, or Reaction Speed. All free!</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Play &amp; Earn Stars</h4>
+          <p>Answer questions, flip cards, and win rounds to collect stars and level up!</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Hit the Leaderboard</h4>
+          <p>See how your score stacks up. Beat your best and become the KidZone champion! 🏆</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ AUDIENCE ══════════ -->
+    <section class="audience" id="audience">
+      <div class="text-center" style="margin-bottom:40px">
+        <div class="section-label">👨‍👩‍👧 Who It's For</div>
+        <h2 class="section-heading">Built for Kids.<br>Trusted by <em>Parents.</em></h2>
+      </div>
+
+      <div class="audience-grid">
+        <div class="audience-card kids">
+          <span class="big">🧒</span>
+          <h3>For Kids &amp; Youth</h3>
+          <ul>
+            <li>Boost your general knowledge with fun quizzes</li>
+            <li>Train your memory with card-matching games</li>
+            <li>Sharpen your number skills with brain games</li>
+            <li>Challenge friends and top the leaderboard</li>
+            <li>Earn stars and level up as you play</li>
+            <li>Play any time — at home, school, or on the go</li>
+          </ul>
+        </div>
+
+        <div class="audience-card parents">
+          <span class="big">👨‍👩‍👧</span>
+          <h3>For Parents &amp; Teachers</h3>
+          <ul>
+            <li>No account or personal data required to play</li>
+            <li>Educational content covering multiple subjects</li>
+            <li>Designed to encourage healthy screen time</li>
+            <li>Works on any device without downloads</li>
+            <li>Safe browsing environment with no social features</li>
+            <li>Great for classroom brain-break activities</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PROMISE BANNER ══════════ -->
+    <div class="promise" id="promise">
+      <h2>🌟 Our Promise to You</h2>
+      <p>KidZone will always be a fun, safe, and free place where every child can learn, play, and grow. We're just getting started — new games and challenges are on the way!</p>
+      <a href="index.html" class="promise-btn">🎮 Start Playing Now!</a>
+    </div>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <div class="foot-links">
+      <a href="index.html">🏠 Home</a>
+      <a href="about-us.html">👋 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="mailto:quizverseworld@gmail.com">✉️ Contact</a>
+    </div>
+    <p>© 2026 <strong>KidZone</strong>. Made with 💜 for curious kids everywhere.</p>
+    <p style="margin-top:6px">Learning is more fun when it feels like a game. 🎯</p>
+  </footer>
+
+</body>
+</html>
